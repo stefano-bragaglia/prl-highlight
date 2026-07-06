@@ -128,3 +128,27 @@ def test_prl_or_expansion_is_structurally_valid_prl():
 def test_prl_exists_expansion_is_structurally_valid_prl():
     filled = _fill_placeholders(_template("prl-exists").attrib["value"])
     assert filled == "exists pattern"
+
+
+def test_header_templates_exist():
+    for name in ("prl-import", "prl-package"):
+        _template(name)
+
+
+def test_header_templates_have_other_context():
+    for name in ("prl-import", "prl-package"):
+        template = _template(name)
+        context = template.find("context")
+        assert context is not None
+        options = {o.attrib["name"]: o.attrib["value"] for o in context.findall("option")}
+        assert options.get("OTHER") == "true"
+
+
+def test_prl_import_expansion_is_structurally_valid_prl():
+    filled = _fill_placeholders(_template("prl-import").attrib["value"])
+    assert filled == "from module import name"
+
+
+def test_prl_package_expansion_is_structurally_valid_prl():
+    filled = _fill_placeholders(_template("prl-package").attrib["value"])
+    assert filled == "package qualified_name;"
