@@ -4,6 +4,7 @@
   "fileTypes": ["prl"],
   "patterns": [
     { "include": "#tag" },
+    { "include": "#import-line" },
     { "include": "#toplevel-keywords" },
     { "include": "#declare-block" },
     { "include": "#rule-block" },
@@ -18,8 +19,18 @@
       }
     },
     "toplevel-keywords": {
-      "match": "\\b(?:package|import|from|as|when|not|or|exists|forall|accumulate|salience|no-loop)\\b",
+      "match": "\\b(?:package|from|as|when|not|or|exists|forall|accumulate|salience|no-loop)\\b",
       "name": "keyword.control.prl"
+    },
+    "import-line": {
+      "begin": "\\b(import)\\b",
+      "beginCaptures": { "1": { "name": "keyword.control.prl" } },
+      "end": "$",
+      "patterns": [
+        { "include": "#toplevel-keywords" },
+        { "match": "[A-Za-z_]\\w*", "name": "entity.name.type.prl" },
+        { "include": "#fallback" }
+      ]
     },
     "declare-block": {
       "begin": "\\b(declare)\\s+([A-Za-z_]\\w*)\\b",
@@ -38,6 +49,14 @@
             "2": { "name": "entity.name.type.prl" }
           }
         },
+        {
+          "match": "([A-Za-z_]\\w*)\\s*:\\s*([A-Za-z_]\\w*)(?:<([A-Za-z_]\\w*)>)?",
+          "captures": {
+            "1": { "name": "variable.other.property.prl" },
+            "2": { "name": "entity.name.type.prl" },
+            "3": { "name": "entity.name.type.prl" }
+          }
+        },
         { "include": "#fallback" }
       ]
     },
@@ -50,6 +69,10 @@
         { "include": "#tag" },
         { "include": "#toplevel-keywords" },
         { "include": "#then-block" },
+        {
+          "match": "[A-Za-z_]\\w*(?=\\s*\\()",
+          "name": "entity.name.type.prl"
+        },
         { "include": "#fallback" }
       ]
     },
