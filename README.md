@@ -40,8 +40,8 @@ scope them to, so this is expected behavior, not a bug.
 | `prl-forall` | a `forall(...)` skeleton |
 | `prl-or` | an `... or ...` disjunction branch pair |
 | `prl-exists` | an `exists ...` skeleton |
-
-<!-- More templates added as further live-templates stories land. -->
+| `prl-import` | a `from ... import ...` skeleton |
+| `prl-package` | a `package ...;` skeleton |
 
 ## Contributing
 

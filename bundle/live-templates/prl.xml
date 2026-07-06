@@ -60,4 +60,17 @@
       <option name="OTHER" value="true" />
     </context>
   </template>
+  <template name="prl-import" value="from $MODULE$ import $NAME$$END$" description="PRL import skeleton" toReformat="false" toShortenFQNames="true">
+    <variable name="MODULE" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="NAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="OTHER" value="true" />
+    </context>
+  </template>
+  <template name="prl-package" value="package $QUALIFIED_NAME$;$END$" description="PRL package skeleton" toReformat="false" toShortenFQNames="true">
+    <variable name="QUALIFIED_NAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="OTHER" value="true" />
+    </context>
+  </template>
 </templateSet>
