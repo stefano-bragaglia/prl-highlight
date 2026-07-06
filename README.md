@@ -17,8 +17,29 @@ Syntax highlighting for pRETE's PRL rule language (`.prl` files) in PyCharm.
 
 ## Installation
 
-<!-- Filled in once the bundle is built: exact PyCharm menu path
-     (Preferences -> Editor -> TextMate Bundles) and any setup script usage. -->
+There is no one-click installer — PyCharm's TextMate Bundles and Live
+Templates features both require a manual, one-time registration step
+through their Preferences screens. These steps register this repo's copy
+of the bundle in your IDE; run them again on any other machine/PyCharm
+installation where you want highlighting too.
+
+1. Clone this repository (a plain zip download won't work — the bundle's
+   grammar file is a symlink, which only a real git clone preserves).
+2. Get the bundle folder's absolute path:
+   ```
+   uv run python scripts/locate_bundle.py
+   ```
+   This prints the path to `bundle/PRL.tmbundle` and nothing else, so you
+   can copy it straight from the terminal.
+3. In PyCharm, go to **Preferences → Editor → TextMate Bundles**, click
+   **+**, and select the folder printed above. `.prl` files should now
+   render in color instead of plain text.
+4. (Optional but recommended) Import the Live Templates skeletons: go to
+   **Preferences → Editor → Live Templates**, click the gear icon, choose
+   **Import**, and select `bundle/live-templates/prl.xml` from this repo.
+5. Verify: open any of the vendored example files under
+   `tests/fixtures/prl_examples/` (or one of your own `.prl` files) and
+   confirm keywords, strings, and comments render in color.
 
 ## Usage
 
