@@ -12,7 +12,9 @@ Syntax highlighting for pRETE's PRL rule language (`.prl` files) in PyCharm.
 ## Prerequisites
 
 - PyCharm (or any JetBrains IDE) 2024.x+ (built-in TextMate bundle support)
-- [pRETE](https://github.com/stefano-bragaglia/pRETE) if you want to try the bundle against real `.prl` files
+- Targets [pRETE](https://github.com/stefano-bragaglia/pRETE) v2.5.1's PRL
+  language (grammar built from pRETE's own lexer/parser/AST source, and
+  tested against its example `.prl` files, at that version)
 
 ## Installation
 
