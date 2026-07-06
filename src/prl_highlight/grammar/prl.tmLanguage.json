@@ -3,6 +3,7 @@
   "name": "PRL",
   "fileTypes": ["prl"],
   "patterns": [
+    { "include": "#comments" },
     { "include": "#tag" },
     { "include": "#import-line" },
     { "include": "#toplevel-keywords" },
@@ -11,6 +12,20 @@
     { "include": "#fallback" }
   ],
   "repository": {
+    "comments": {
+      "patterns": [
+        { "match": "//[^\\n]*", "name": "comment.line.double-slash.prl" },
+        {
+          "begin": "/\\*",
+          "end": "\\*/",
+          "name": "comment.block.prl"
+        }
+      ]
+    },
+    "operators": {
+      "match": "==|!=|<=|>=|<|>|=",
+      "name": "keyword.operator.comparison.prl"
+    },
     "tag": {
       "match": "@([A-Za-z_][\\w-]*)(?:\\(([^)]*)\\))?",
       "captures": {
@@ -41,6 +56,7 @@
       "end": "\\b(end)\\b",
       "endCaptures": { "1": { "name": "keyword.control.prl" } },
       "patterns": [
+        { "include": "#comments" },
         { "include": "#tag" },
         {
           "match": "\\b(extends)\\s+([A-Za-z_]\\w*)\\b",
@@ -66,6 +82,7 @@
       "end": "\\b(end)\\b",
       "endCaptures": { "1": { "name": "keyword.control.prl" } },
       "patterns": [
+        { "include": "#comments" },
         { "include": "#tag" },
         { "include": "#toplevel-keywords" },
         { "include": "#then-block" },
@@ -74,6 +91,12 @@
           "name": "entity.name.type.prl"
         },
         { "include": "#literals" },
+        {
+          "match": "[A-Za-z_]\\w*",
+          "name": "source.prl",
+          "comment": "bare identifier placeholder; constraint-forms replaces this with proper field-path scoping"
+        },
+        { "include": "#operators" },
         { "include": "#fallback" }
       ]
     },
