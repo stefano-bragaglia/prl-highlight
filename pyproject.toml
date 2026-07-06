@@ -3,6 +3,8 @@ name = "prl-highlight"
 version = "0.1.0"
 description = "Add your description here"
 requires-python = ">=3.14"
+license = "MIT"
+license-files = ["LICENSE"]
 dependencies = []
 
 [dependency-groups]
