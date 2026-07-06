@@ -73,7 +73,30 @@
           "match": "[A-Za-z_]\\w*(?=\\s*\\()",
           "name": "entity.name.type.prl"
         },
+        { "include": "#literals" },
         { "include": "#fallback" }
+      ]
+    },
+    "literals": {
+      "patterns": [
+        {
+          "match": "\"(?:[^\"\\\\]|\\\\.)*\"",
+          "name": "string.quoted.double.prl"
+        },
+        {
+          "match": "'(?:[^'\\\\]|\\\\.)*'",
+          "name": "string.quoted.single.prl"
+        },
+        { "match": "-?\\d+\\.\\d+", "name": "constant.numeric.prl" },
+        { "match": "-?\\d+", "name": "constant.numeric.prl" },
+        {
+          "match": "\\b(?:true|false|True|False)\\b",
+          "name": "constant.language.boolean.prl"
+        },
+        {
+          "match": "\\b(?:null|None)\\b",
+          "name": "constant.language.null.prl"
+        }
       ]
     },
     "then-block": {
