@@ -24,4 +24,40 @@
       <option name="OTHER" value="true" />
     </context>
   </template>
+  <template name="prl-not" value="not ( $PATTERN$ )$END$" description="PRL negated-condition (NCC) skeleton" toReformat="false" toShortenFQNames="true">
+    <variable name="PATTERN" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="OTHER" value="true" />
+    </context>
+  </template>
+  <template name="prl-accumulate" value="accumulate(&#10;    $INNER$;&#10;    $RESULT$: $FUNCTION$($BIND$);&#10;    $CONSTRAINT$&#10;)$END$" description="PRL accumulate skeleton" toReformat="false" toShortenFQNames="true">
+    <variable name="INNER" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="RESULT" expression="" defaultValue="&quot;$total&quot;" alwaysStopAt="true" />
+    <variable name="FUNCTION" expression="enum(&quot;sum&quot;, &quot;count&quot;, &quot;min&quot;, &quot;max&quot;, &quot;collectList&quot;)" defaultValue="&quot;sum&quot;" alwaysStopAt="true" />
+    <variable name="BIND" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="CONSTRAINT" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="OTHER" value="true" />
+    </context>
+  </template>
+  <template name="prl-forall" value="forall(&#10;    $PATTERN$,&#10;    $CONDITION$&#10;)$END$" description="PRL forall skeleton" toReformat="false" toShortenFQNames="true">
+    <variable name="PATTERN" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="CONDITION" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="OTHER" value="true" />
+    </context>
+  </template>
+  <template name="prl-or" value="$LEFT$ or&#10;$RIGHT$$END$" description="PRL or-disjunction branch pair" toReformat="false" toShortenFQNames="true">
+    <variable name="LEFT" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="RIGHT" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="OTHER" value="true" />
+    </context>
+  </template>
+  <template name="prl-exists" value="exists $PATTERN$$END$" description="PRL existence-check skeleton" toReformat="false" toShortenFQNames="true">
+    <variable name="PATTERN" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="OTHER" value="true" />
+    </context>
+  </template>
 </templateSet>

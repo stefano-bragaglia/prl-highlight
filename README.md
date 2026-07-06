@@ -35,6 +35,11 @@ scope them to, so this is expected behavior, not a bug.
 | `prl-rule` | a `rule "..." when ... then ... end` skeleton |
 | `prl-declare` | a `declare TypeName ... end` skeleton |
 | `prl-declare-extends` | a `declare TypeName extends ParentType ... end` skeleton |
+| `prl-not` | a `not ( ... )` negated-condition skeleton |
+| `prl-accumulate` | an `accumulate(...)` skeleton (cycle the function placeholder through `sum`/`count`/`min`/`max`/`collectList`) |
+| `prl-forall` | a `forall(...)` skeleton |
+| `prl-or` | an `... or ...` disjunction branch pair |
+| `prl-exists` | an `exists ...` skeleton |
 
 <!-- More templates added as further live-templates stories land. -->
 
