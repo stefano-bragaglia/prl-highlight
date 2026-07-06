@@ -1,2 +1,27 @@
 <templateSet group="PRL">
+  <template name="prl-rule" value="rule &quot;$NAME$&quot;&#10;when&#10;    $LHS$&#10;then&#10;    $RHS$&#10;end$END$" description="PRL rule skeleton" toReformat="false" toShortenFQNames="true">
+    <variable name="NAME" expression="" defaultValue="&quot;rule-name&quot;" alwaysStopAt="true" />
+    <variable name="LHS" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="RHS" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="OTHER" value="true" />
+    </context>
+  </template>
+  <template name="prl-declare" value="declare $TYPE$&#10;    $FIELD$: $FIELD_TYPE$&#10;end$END$" description="PRL declare skeleton" toReformat="false" toShortenFQNames="true">
+    <variable name="TYPE" expression="" defaultValue="&quot;TypeName&quot;" alwaysStopAt="true" />
+    <variable name="FIELD" expression="" defaultValue="&quot;field&quot;" alwaysStopAt="true" />
+    <variable name="FIELD_TYPE" expression="" defaultValue="&quot;str&quot;" alwaysStopAt="true" />
+    <context>
+      <option name="OTHER" value="true" />
+    </context>
+  </template>
+  <template name="prl-declare-extends" value="declare $TYPE$ extends $PARENT$&#10;    $FIELD$: $FIELD_TYPE$&#10;end$END$" description="PRL declare skeleton with inheritance" toReformat="false" toShortenFQNames="true">
+    <variable name="TYPE" expression="" defaultValue="&quot;TypeName&quot;" alwaysStopAt="true" />
+    <variable name="PARENT" expression="" defaultValue="&quot;ParentType&quot;" alwaysStopAt="true" />
+    <variable name="FIELD" expression="" defaultValue="&quot;field&quot;" alwaysStopAt="true" />
+    <variable name="FIELD_TYPE" expression="" defaultValue="&quot;str&quot;" alwaysStopAt="true" />
+    <context>
+      <option name="OTHER" value="true" />
+    </context>
+  </template>
 </templateSet>

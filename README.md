@@ -22,7 +22,21 @@ Syntax highlighting for pRETE's PRL rule language (`.prl` files) in PyCharm.
 
 ## Usage
 
-<!-- Filled in once the bundle is built. -->
+### Live Templates
+
+Import `bundle/live-templates/prl.xml` via Preferences → Editor → Live
+Templates → gear icon → Import, then type an abbreviation and press Tab to
+expand it. Every abbreviation is prefixed `prl-` and available in **any**
+file type (context "Other") — `.prl` has no registered IntelliJ Language to
+scope them to, so this is expected behavior, not a bug.
+
+| Abbreviation | Expands to |
+|---|---|
+| `prl-rule` | a `rule "..." when ... then ... end` skeleton |
+| `prl-declare` | a `declare TypeName ... end` skeleton |
+| `prl-declare-extends` | a `declare TypeName extends ParentType ... end` skeleton |
+
+<!-- More templates added as further live-templates stories land. -->
 
 ## Contributing
 
