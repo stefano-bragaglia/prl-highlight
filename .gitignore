@@ -1,0 +1,17 @@
+.venv/
+__pycache__/
+*.pyc
+.idea/
+.DS_Store
+.env
+*.egg-info/
+dist/
+.coverage
+htmlcov/
+
+# These should never exist inside project/, but ignore them defensively in
+# case anything is ever copied across the vault/project boundary.
+meta/
+.claude/
+CLAUDE.md
+Notes.md

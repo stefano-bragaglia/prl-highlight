@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v3
+        with:
+          python-version: "3.14"
+
+      - name: Install dependencies
+        run: uv sync --all-extras --dev
+
+      - name: Lint (ruff)
+        run: uv run ruff check
+
+      - name: Complexity (radon)
+        run: uv run radon cc -n B src
+
+      - name: Tests (pytest, coverage >= 90%)
+        # exit 5 = "no tests collected" - not a failure, just nothing to run yet
+        run: uv run pytest --cov=src/prl_highlight --cov-fail-under=90 || [ $? -eq 5 ]
