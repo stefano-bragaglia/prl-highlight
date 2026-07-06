@@ -1,0 +1,7 @@
+{
+  "scopeName": "source.dummy",
+  "patterns": [
+    {"match": "\\bfoo\\b", "name": "keyword.control.dummy"},
+    {"match": "[^\\s]+", "name": "text.plain.dummy"}
+  ]
+}
