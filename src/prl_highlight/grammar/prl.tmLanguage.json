@@ -87,6 +87,7 @@
         { "include": "#toplevel-keywords" },
         { "include": "#then-block" },
         { "include": "#fact-binding" },
+        { "include": "#variable-ref" },
         { "include": "#oopath-pattern" },
         { "include": "#traditional-pattern" },
         { "include": "#literals" },
