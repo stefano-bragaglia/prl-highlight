@@ -1,0 +1,76 @@
+<templateSet group="PRL">
+  <template name="prl-rule" value="rule &quot;$NAME$&quot;&#10;when&#10;    $LHS$&#10;then&#10;    $RHS$&#10;end$END$" description="PRL rule skeleton" toReformat="false" toShortenFQNames="true">
+    <variable name="NAME" expression="" defaultValue="&quot;rule-name&quot;" alwaysStopAt="true" />
+    <variable name="LHS" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="RHS" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="OTHER" value="true" />
+    </context>
+  </template>
+  <template name="prl-declare" value="declare $TYPE$&#10;    $FIELD$: $FIELD_TYPE$&#10;end$END$" description="PRL declare skeleton" toReformat="false" toShortenFQNames="true">
+    <variable name="TYPE" expression="" defaultValue="&quot;TypeName&quot;" alwaysStopAt="true" />
+    <variable name="FIELD" expression="" defaultValue="&quot;field&quot;" alwaysStopAt="true" />
+    <variable name="FIELD_TYPE" expression="" defaultValue="&quot;str&quot;" alwaysStopAt="true" />
+    <context>
+      <option name="OTHER" value="true" />
+    </context>
+  </template>
+  <template name="prl-declare-extends" value="declare $TYPE$ extends $PARENT$&#10;    $FIELD$: $FIELD_TYPE$&#10;end$END$" description="PRL declare skeleton with inheritance" toReformat="false" toShortenFQNames="true">
+    <variable name="TYPE" expression="" defaultValue="&quot;TypeName&quot;" alwaysStopAt="true" />
+    <variable name="PARENT" expression="" defaultValue="&quot;ParentType&quot;" alwaysStopAt="true" />
+    <variable name="FIELD" expression="" defaultValue="&quot;field&quot;" alwaysStopAt="true" />
+    <variable name="FIELD_TYPE" expression="" defaultValue="&quot;str&quot;" alwaysStopAt="true" />
+    <context>
+      <option name="OTHER" value="true" />
+    </context>
+  </template>
+  <template name="prl-not" value="not ( $PATTERN$ )$END$" description="PRL negated-condition (NCC) skeleton" toReformat="false" toShortenFQNames="true">
+    <variable name="PATTERN" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="OTHER" value="true" />
+    </context>
+  </template>
+  <template name="prl-accumulate" value="accumulate(&#10;    $INNER$;&#10;    $RESULT$: $FUNCTION$($BIND$);&#10;    $CONSTRAINT$&#10;)$END$" description="PRL accumulate skeleton" toReformat="false" toShortenFQNames="true">
+    <variable name="INNER" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="RESULT" expression="" defaultValue="&quot;$total&quot;" alwaysStopAt="true" />
+    <variable name="FUNCTION" expression="enum(&quot;sum&quot;, &quot;count&quot;, &quot;min&quot;, &quot;max&quot;, &quot;collectList&quot;)" defaultValue="&quot;sum&quot;" alwaysStopAt="true" />
+    <variable name="BIND" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="CONSTRAINT" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="OTHER" value="true" />
+    </context>
+  </template>
+  <template name="prl-forall" value="forall(&#10;    $PATTERN$,&#10;    $CONDITION$&#10;)$END$" description="PRL forall skeleton" toReformat="false" toShortenFQNames="true">
+    <variable name="PATTERN" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="CONDITION" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="OTHER" value="true" />
+    </context>
+  </template>
+  <template name="prl-or" value="$LEFT$ or&#10;$RIGHT$$END$" description="PRL or-disjunction branch pair" toReformat="false" toShortenFQNames="true">
+    <variable name="LEFT" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="RIGHT" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="OTHER" value="true" />
+    </context>
+  </template>
+  <template name="prl-exists" value="exists $PATTERN$$END$" description="PRL existence-check skeleton" toReformat="false" toShortenFQNames="true">
+    <variable name="PATTERN" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="OTHER" value="true" />
+    </context>
+  </template>
+  <template name="prl-import" value="from $MODULE$ import $NAME$$END$" description="PRL import skeleton" toReformat="false" toShortenFQNames="true">
+    <variable name="MODULE" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="NAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="OTHER" value="true" />
+    </context>
+  </template>
+  <template name="prl-package" value="package $QUALIFIED_NAME$;$END$" description="PRL package skeleton" toReformat="false" toShortenFQNames="true">
+    <variable name="QUALIFIED_NAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="OTHER" value="true" />
+    </context>
+  </template>
+</templateSet>
