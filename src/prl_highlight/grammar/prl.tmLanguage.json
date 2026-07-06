@@ -90,7 +90,7 @@
         { "include": "#oopath-pattern" },
         { "include": "#traditional-pattern" },
         { "include": "#literals" },
-        { "include": "#bare-identifier" },
+        { "include": "#field-path-segment" },
         { "include": "#operators" },
         { "include": "#fallback" }
       ]
@@ -113,7 +113,10 @@
       "patterns": [
         { "include": "#comments" },
         { "include": "#literals" },
-        { "include": "#bare-identifier" },
+        { "include": "#variable-ref" },
+        { "include": "#binding-colon" },
+        { "include": "#accessor-dot" },
+        { "include": "#field-path-segment" },
         { "include": "#operators" },
         { "include": "#fallback" }
       ]
@@ -130,15 +133,29 @@
       "patterns": [
         { "include": "#comments" },
         { "include": "#literals" },
-        { "include": "#bare-identifier" },
+        { "include": "#variable-ref" },
+        { "include": "#binding-colon" },
+        { "include": "#accessor-dot" },
+        { "include": "#field-path-segment" },
         { "include": "#operators" },
         { "include": "#fallback" }
       ]
     },
-    "bare-identifier": {
+    "field-path-segment": {
       "match": "[A-Za-z_]\\w*",
-      "name": "source.prl",
-      "comment": "placeholder; constraint-forms replaces this with proper field-path scoping"
+      "name": "variable.other.property.prl"
+    },
+    "accessor-dot": {
+      "match": "\\.",
+      "name": "punctuation.accessor.prl"
+    },
+    "variable-ref": {
+      "match": "\\$[A-Za-z_]\\w*",
+      "name": "variable.other.prl"
+    },
+    "binding-colon": {
+      "match": ":",
+      "name": "punctuation.separator.binding.prl"
     },
     "literals": {
       "patterns": [
