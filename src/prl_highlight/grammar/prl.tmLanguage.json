@@ -86,19 +86,59 @@
         { "include": "#tag" },
         { "include": "#toplevel-keywords" },
         { "include": "#then-block" },
-        {
-          "match": "[A-Za-z_]\\w*(?=\\s*\\()",
-          "name": "entity.name.type.prl"
-        },
+        { "include": "#fact-binding" },
+        { "include": "#oopath-pattern" },
+        { "include": "#traditional-pattern" },
         { "include": "#literals" },
-        {
-          "match": "[A-Za-z_]\\w*",
-          "name": "source.prl",
-          "comment": "bare identifier placeholder; constraint-forms replaces this with proper field-path scoping"
-        },
+        { "include": "#bare-identifier" },
         { "include": "#operators" },
         { "include": "#fallback" }
       ]
+    },
+    "fact-binding": {
+      "match": "(?:(\\$[A-Za-z_]\\w*)|([A-Za-z_]\\w*))\\s*(:)(?!:)",
+      "captures": {
+        "1": { "name": "variable.other.prl" },
+        "3": { "name": "punctuation.separator.binding.prl" }
+      }
+    },
+    "traditional-pattern": {
+      "begin": "([A-Za-z_]\\w*)\\s*(\\()",
+      "beginCaptures": {
+        "1": { "name": "entity.name.type.prl" },
+        "2": { "name": "punctuation.section.pattern.prl" }
+      },
+      "end": "(\\))",
+      "endCaptures": { "1": { "name": "punctuation.section.pattern.prl" } },
+      "patterns": [
+        { "include": "#comments" },
+        { "include": "#literals" },
+        { "include": "#bare-identifier" },
+        { "include": "#operators" },
+        { "include": "#fallback" }
+      ]
+    },
+    "oopath-pattern": {
+      "begin": "(/)([A-Za-z_]\\w*)\\s*(\\[)",
+      "beginCaptures": {
+        "1": { "name": "punctuation.section.pattern.prl" },
+        "2": { "name": "entity.name.type.prl" },
+        "3": { "name": "punctuation.section.pattern.prl" }
+      },
+      "end": "(\\])",
+      "endCaptures": { "1": { "name": "punctuation.section.pattern.prl" } },
+      "patterns": [
+        { "include": "#comments" },
+        { "include": "#literals" },
+        { "include": "#bare-identifier" },
+        { "include": "#operators" },
+        { "include": "#fallback" }
+      ]
+    },
+    "bare-identifier": {
+      "match": "[A-Za-z_]\\w*",
+      "name": "source.prl",
+      "comment": "placeholder; constraint-forms replaces this with proper field-path scoping"
     },
     "literals": {
       "patterns": [
