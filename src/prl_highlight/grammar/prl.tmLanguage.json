@@ -1,0 +1,68 @@
+{
+  "scopeName": "source.prl",
+  "name": "PRL",
+  "fileTypes": ["prl"],
+  "patterns": [
+    { "include": "#tag" },
+    { "include": "#toplevel-keywords" },
+    { "include": "#declare-block" },
+    { "include": "#rule-block" },
+    { "include": "#fallback" }
+  ],
+  "repository": {
+    "tag": {
+      "match": "@([A-Za-z_][\\w-]*)(?:\\(([^)]*)\\))?",
+      "captures": {
+        "1": { "name": "entity.name.tag.prl" },
+        "2": { "name": "meta.tag-value.prl" }
+      }
+    },
+    "toplevel-keywords": {
+      "match": "\\b(?:package|import|from|as|when|not|or|exists|forall|accumulate|salience|no-loop)\\b",
+      "name": "keyword.control.prl"
+    },
+    "declare-block": {
+      "begin": "\\b(declare)\\s+([A-Za-z_]\\w*)\\b",
+      "beginCaptures": {
+        "1": { "name": "keyword.control.prl" },
+        "2": { "name": "entity.name.type.prl" }
+      },
+      "end": "\\b(end)\\b",
+      "endCaptures": { "1": { "name": "keyword.control.prl" } },
+      "patterns": [
+        { "include": "#tag" },
+        {
+          "match": "\\b(extends)\\s+([A-Za-z_]\\w*)\\b",
+          "captures": {
+            "1": { "name": "keyword.control.prl" },
+            "2": { "name": "entity.name.type.prl" }
+          }
+        },
+        { "include": "#fallback" }
+      ]
+    },
+    "rule-block": {
+      "begin": "\\b(rule)\\b",
+      "beginCaptures": { "1": { "name": "keyword.control.prl" } },
+      "end": "\\b(end)\\b",
+      "endCaptures": { "1": { "name": "keyword.control.prl" } },
+      "patterns": [
+        { "include": "#tag" },
+        { "include": "#toplevel-keywords" },
+        { "include": "#then-block" },
+        { "include": "#fallback" }
+      ]
+    },
+    "then-block": {
+      "begin": "\\b(then)\\b",
+      "beginCaptures": { "1": { "name": "keyword.control.prl" } },
+      "end": "(?=\\bend\\b)",
+      "name": "meta.embedded.block.python.prl",
+      "patterns": [{ "include": "source.python" }, { "include": "#fallback" }]
+    },
+    "fallback": {
+      "match": "[^\\s]+",
+      "name": "source.prl"
+    }
+  }
+}
