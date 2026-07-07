@@ -65,15 +65,162 @@
             "2": { "name": "entity.name.type.prl" }
           }
         },
-        {
-          "match": "([A-Za-z_]\\w*)\\s*:\\s*([A-Za-z_]\\w*)(?:<([A-Za-z_]\\w*)>)?",
-          "captures": {
-            "1": { "name": "variable.other.property.prl" },
-            "2": { "name": "entity.name.type.prl" },
-            "3": { "name": "entity.name.type.prl" }
-          }
-        },
+        { "include": "#field-decl" },
         { "include": "#fallback" }
+      ]
+    },
+    "field-decl": {
+      "begin": "([A-Za-z_]\\w*)\\s*(:)(?!:)",
+      "beginCaptures": {
+        "1": { "name": "variable.other.property.prl" },
+        "2": { "name": "punctuation.separator.binding.prl" }
+      },
+      "end": "$",
+      "patterns": [
+        { "include": "#comments" },
+        {
+          "begin": "(?=[A-Za-z_])",
+          "end": "(?==)|$",
+          "patterns": [{ "include": "#type-ref" }, { "include": "#fallback" }]
+        },
+        {
+          "begin": "=",
+          "beginCaptures": { "0": { "name": "keyword.operator.comparison.prl" } },
+          "end": "$",
+          "patterns": [
+            { "include": "#comments" },
+            { "include": "#container-literal" },
+            { "include": "#literals" },
+            { "include": "#fallback" }
+          ]
+        }
+      ]
+    },
+    "type-ref": {
+      "patterns": [
+        {
+          "match": "([A-Za-z_]\\w*)\\s*(?=\\[)",
+          "captures": { "1": { "name": "entity.name.type.prl" } }
+        },
+        { "include": "#generic-brackets-1" },
+        { "match": "[A-Za-z_]\\w*", "name": "entity.name.type.prl" }
+      ]
+    },
+    "generic-brackets-1": { "$comment": "ponytail: 3-deep named chain (not true self-recursion) works around a textmate-grammar-python bug where a rule directly/indirectly including itself loses its own closing bracket on the 2nd+ nesting level - see declare-field-defaults story notes. 3 levels covers pRETE's real usage (max 2, per its own test suite) with headroom; a 4th level degrades gracefully to plain/fallback scope rather than crashing.", "begin": "\\[", "beginCaptures": { "0": { "name": "punctuation.section.generic.prl" } }, "end": "\\]", "endCaptures": { "0": { "name": "punctuation.section.generic.prl" } }, "patterns": [
+        { "match": ",", "name": "punctuation.separator.generic.prl" },
+        {
+          "match": "([A-Za-z_]\\w*)\\s*(?=\\[)",
+          "captures": { "1": { "name": "entity.name.type.prl" } }
+        },
+        { "include": "#generic-brackets-2" },
+        { "match": "[A-Za-z_]\\w*", "name": "entity.name.type.prl" }
+      ] },
+    "generic-brackets-2": { "begin": "\\[", "beginCaptures": { "0": { "name": "punctuation.section.generic.prl" } }, "end": "\\]", "endCaptures": { "0": { "name": "punctuation.section.generic.prl" } }, "patterns": [
+        { "match": ",", "name": "punctuation.separator.generic.prl" },
+        {
+          "match": "([A-Za-z_]\\w*)\\s*(?=\\[)",
+          "captures": { "1": { "name": "entity.name.type.prl" } }
+        },
+        { "include": "#generic-brackets-3" },
+        { "match": "[A-Za-z_]\\w*", "name": "entity.name.type.prl" }
+      ] },
+    "generic-brackets-3": { "begin": "\\[", "beginCaptures": { "0": { "name": "punctuation.section.generic.prl" } }, "end": "\\]", "endCaptures": { "0": { "name": "punctuation.section.generic.prl" } }, "patterns": [
+        { "match": ",", "name": "punctuation.separator.generic.prl" },
+        { "match": "[A-Za-z_]\\w*", "name": "entity.name.type.prl" },
+        { "include": "#fallback" }
+      ] },
+    "container-literal": {
+      "patterns": [
+        { "include": "#container-literal-1" }
+      ]
+    },
+    "container-literal-1": {
+      "$comment": "ponytail: same 3-deep named-chain workaround as generic-brackets-*, for list/dict default-value literals.",
+      "patterns": [
+        {
+          "begin": "\\[",
+          "beginCaptures": { "0": { "name": "punctuation.section.container.prl" } },
+          "end": "\\]",
+          "endCaptures": { "0": { "name": "punctuation.section.container.prl" } },
+          "patterns": [
+            { "match": ",", "name": "punctuation.separator.container.prl" },
+            { "include": "#comments" },
+            { "include": "#container-literal-2" },
+            { "include": "#literals" },
+            { "include": "#fallback" }
+          ]
+        },
+        {
+          "begin": "\\{",
+          "beginCaptures": { "0": { "name": "punctuation.section.container.prl" } },
+          "end": "\\}",
+          "endCaptures": { "0": { "name": "punctuation.section.container.prl" } },
+          "patterns": [
+            { "match": "[,:]", "name": "punctuation.separator.container.prl" },
+            { "include": "#comments" },
+            { "include": "#container-literal-2" },
+            { "include": "#literals" },
+            { "include": "#fallback" }
+          ]
+        }
+      ]
+    },
+    "container-literal-2": {
+      "patterns": [
+        {
+          "begin": "\\[",
+          "beginCaptures": { "0": { "name": "punctuation.section.container.prl" } },
+          "end": "\\]",
+          "endCaptures": { "0": { "name": "punctuation.section.container.prl" } },
+          "patterns": [
+            { "match": ",", "name": "punctuation.separator.container.prl" },
+            { "include": "#comments" },
+            { "include": "#container-literal-3" },
+            { "include": "#literals" },
+            { "include": "#fallback" }
+          ]
+        },
+        {
+          "begin": "\\{",
+          "beginCaptures": { "0": { "name": "punctuation.section.container.prl" } },
+          "end": "\\}",
+          "endCaptures": { "0": { "name": "punctuation.section.container.prl" } },
+          "patterns": [
+            { "match": "[,:]", "name": "punctuation.separator.container.prl" },
+            { "include": "#comments" },
+            { "include": "#container-literal-3" },
+            { "include": "#literals" },
+            { "include": "#fallback" }
+          ]
+        }
+      ]
+    },
+    "container-literal-3": {
+      "patterns": [
+        {
+          "begin": "\\[",
+          "beginCaptures": { "0": { "name": "punctuation.section.container.prl" } },
+          "end": "\\]",
+          "endCaptures": { "0": { "name": "punctuation.section.container.prl" } },
+          "patterns": [
+            { "match": ",", "name": "punctuation.separator.container.prl" },
+            { "include": "#comments" },
+            { "include": "#literals" },
+            { "include": "#fallback" }
+          ]
+        },
+        {
+          "begin": "\\{",
+          "beginCaptures": { "0": { "name": "punctuation.section.container.prl" } },
+          "end": "\\}",
+          "endCaptures": { "0": { "name": "punctuation.section.container.prl" } },
+          "patterns": [
+            { "match": "[,:]", "name": "punctuation.separator.container.prl" },
+            { "include": "#comments" },
+            { "include": "#literals" },
+            { "include": "#fallback" }
+          ]
+        }
       ]
     },
     "rule-block": {

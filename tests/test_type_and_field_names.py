@@ -14,13 +14,6 @@ def test_declare_extends_both_types():
     assert has_scope(parsed, "entity.name.type.prl", "Animal")
 
 
-def test_generic_field_type():
-    parsed = parse("declare Foo\n  items: List<Integer>\nend\n")
-    assert has_scope(parsed, "entity.name.type.prl", "List")
-    assert has_scope(parsed, "entity.name.type.prl", "Integer")
-    assert has_scope(parsed, "variable.other.property.prl", "items")
-
-
 def test_pattern_head_type_name():
     parsed = parse('rule "x"\nwhen\n  Temperature($t: value)\nthen\nend\n')
     assert has_scope(parsed, "entity.name.type.prl", "Temperature")
