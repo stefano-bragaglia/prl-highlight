@@ -12,9 +12,11 @@ Syntax highlighting for pRETE's PRL rule language (`.prl` files) in PyCharm.
 ## Prerequisites
 
 - PyCharm (or any JetBrains IDE) 2024.x+ (built-in TextMate bundle support)
-- Targets [pRETE](https://github.com/stefano-bragaglia/pRETE) v2.5.1's PRL
+- Targets [pRETE](https://github.com/stefano-bragaglia/pRETE) v2.5.3.1's PRL
   language (grammar built from pRETE's own lexer/parser/AST source, and
-  tested against its example `.prl` files, at that version)
+  tested against its example `.prl` files, at that version) — including
+  v2.5.3's bracket-style generics (`list[str]`, `dict[str, int]`) and
+  `declare` field default values (`field: type = value`)
 
 ## Installation
 
